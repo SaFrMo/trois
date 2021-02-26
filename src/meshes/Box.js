@@ -41,7 +41,7 @@ export default {
         this.physics.world.addBody(sphereBody)
         
         this.three.onBeforeRender(() => {
-          this.position.copy(sphereBody.position)
+          this.mesh.position.copy(sphereBody.position)
         })
         
       }
