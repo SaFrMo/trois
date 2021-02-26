@@ -8,7 +8,7 @@
 </template>
 
 <script>
-import Demo1 from './components/demos/Demo1.vue';
+import Demo1 from './components/demos/Physics.vue';
 import Demo2 from './components/demos/Demo2.vue';
 import Demo3 from './components/demos/Demo3.vue';
 import Demo4 from './components/demos/Demo4.vue';
