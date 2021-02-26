@@ -1,6 +1,7 @@
 import { Mesh } from 'three';
 import { inject, watch } from 'vue';
 import useBindProp from '../use/useBindProp.js';
+import CANNON from 'cannon'
 
 export default {
   inject: {
@@ -11,6 +12,7 @@ export default {
       from: 'group',
       default: () => inject('scene'),
     },
+    physics: 'physics'
   },
   emits: ['ready'],
   props: {

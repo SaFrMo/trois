@@ -1,6 +1,7 @@
 import { BoxBufferGeometry } from 'three';
 import { watch } from 'vue';
 import Mesh from './Mesh.js';
+import CANNON from 'cannon'
 
 export default {
   extends: Mesh,
@@ -24,10 +25,25 @@ export default {
   },
   methods: {
     createGeometry() {
-      if (this.size) {
-        this.geometry = new BoxBufferGeometry(this.size, this.size, this.size);
-      } else {
-        this.geometry = new BoxBufferGeometry(this.width, this.height, this.depth);
+      const sides = this.size 
+        ? [this.size, this.size, this.size] 
+        : [this.width, this.height, this.depth];
+      this.geometry = new BoxBufferGeometry(...sides);
+      
+      if (this.physics){
+        const shape = new CANNON.Box(new CANNON.Vec3(...sides))
+        const position = this.position || {x: 0, y: 0, z: 0}
+        const sphereBody = new CANNON.Body({
+          mass: 1,
+          position: new CANNON.Vec3(position.x, position.y, position.z),
+          shape
+        })
+        this.physics.world.addBody(sphereBody)
+        
+        this.three.onBeforeRender(() => {
+          this.position.copy(sphereBody.position)
+        })
+        
       }
     },
   },

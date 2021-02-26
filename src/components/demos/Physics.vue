@@ -1,7 +1,7 @@
 <template>
   <Renderer ref="renderer" antialias :orbit-ctrl="{ enableDamping: true, dampingFactor: 0.05 }">
     <Camera :position="{ x: 5, y: 5, z:-5 }" />
-    <Scene background="#ffffff">
+    <Scene background="#ffffff" use-physics>
         <PointLight :position="{ x: 10, y: 50, z: 50 }" />
       <Box ref="box" :size="1">
         <LambertMaterial />
