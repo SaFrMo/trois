@@ -25,16 +25,16 @@ export default {
   },
   methods: {
     createGeometry() {
-      const sides = this.size 
-        ? [this.size, this.size, this.size] 
+      const sides = this.size
+        ? [this.size, this.size, this.size]
         : [this.width, this.height, this.depth];
       this.geometry = new BoxBufferGeometry(...sides);
-      
+
       // physics creation
-      if (this.physics){
+      if (this.physics) {
         const halfSides = sides.map(v => v * 0.5)
         const shape = new CANNON.Box(new CANNON.Vec3(...halfSides))
-        const position = this.position || {x: 0, y: 0, z: 0}
+        const position = this.position || { x: 0, y: 0, z: 0 }
         const sphereBody = new CANNON.Body({
           mass: 1,
           position: new CANNON.Vec3(position.x, position.y, position.z),
@@ -42,12 +42,11 @@ export default {
           ...(this.physicsOptions || {})
         })
         this.physics.world.addBody(sphereBody)
-        
+
         this.three.onBeforeRender(() => {
           this.mesh.position.copy(sphereBody.position)
-          this.mesh.quaternion.copy(sphereBody.quaternion) 
+          this.mesh.quaternion.copy(sphereBody.quaternion)
         })
-        
       }
     },
   },

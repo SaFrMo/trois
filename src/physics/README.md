@@ -1,4 +1,15 @@
 ## TODO
 - [ ] Bodies for all mesh types
+    - [ ] Cone
+    - [ ] Cylinder
+    - [ ] Dodecahedron
+    - [ ] Gem
+    - [ ] Icosahedron
+    - [ ] Lathe
+    - [ ] Octahedron
+    - [ ] Plane (WIP)
+    - [ ] Polyhedron
+    - [ ] Ring
+    - [ ] Sphere
 - [ ] Materials
 - [ ] Force
