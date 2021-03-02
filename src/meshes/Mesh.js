@@ -24,6 +24,7 @@ export default {
     receiveShadow: Boolean,
     onHover: Function,
     onClick: Function,
+    physicsOptions: Object
   },
   // can't use setup because it will not be used in sub components
   // setup() {},
