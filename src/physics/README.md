@@ -8,6 +8,8 @@
     - [ ] Lathe
     - [ ] Octahedron
     - [ ] Plane (WIP)
+        - [ ] Rotate plane mesh correctly
+        - [ ] Note re: y=0 infinite plane
     - [ ] Polyhedron
     - [ ] Ring
     - [ ] Sphere
