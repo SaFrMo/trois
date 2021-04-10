@@ -1,21 +1,24 @@
-import { defineComponent } from 'vue';
+import { defineComponent, inject } from 'vue';
 import { EffectComposer } from 'three/examples/jsm/postprocessing/EffectComposer.js';
 
 export default defineComponent({
   setup() {
+    const three = inject('rendererComponent')
+    console.log(three)
     return {
+      composer: new EffectComposer(three.renderer),
       passes: [],
     };
   },
   inject: ['three'],
   provide() {
     return {
+      composer: this.composer,
       passes: this.passes,
     };
   },
   mounted() {
     this.three.onAfterInit(() => {
-      this.composer = new EffectComposer(this.three.renderer);
       this.three.renderer.autoClear = false;
       this.passes.forEach(pass => {
         this.composer.addPass(pass);

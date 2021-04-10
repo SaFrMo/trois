@@ -1,7 +1,7 @@
 import { defineComponent } from 'vue';
 
 export default defineComponent({
-  inject: ['three', 'passes'],
+  inject: ['three', 'passes', 'composer'],
   emits: ['ready'],
   beforeMount() {
     if (!this.passes) {
