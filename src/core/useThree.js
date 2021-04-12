@@ -161,8 +161,13 @@ export default function useThree() {
    */
   function render() {
     if (obj.orbitCtrl) obj.orbitCtrl.update();
-    beforeRenderCallbacks.forEach(c => c());
-    obj.renderer.render(obj.scene, obj.camera);
+    if (obj.composer && obj.composer.render) {
+      console.log('composer render')
+      obj.composer.render();
+    } else {
+      console.log('regular render')
+      obj.renderer.render(obj.scene, obj.camera);
+    }
   }
 
   /**
@@ -237,7 +242,7 @@ export default function useThree() {
     obj.camera.aspect = size.ratio;
     obj.camera.updateProjectionMatrix();
 
-    if (obj.composer) {
+    if (obj.composer && obj.composer.setSize) {
       obj.composer.setSize(width, height);
     }
 

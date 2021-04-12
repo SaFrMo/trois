@@ -19,25 +19,32 @@ export default defineComponent({
       return;
     }
 
-    const optionsToPass = this.options.map(option => {
-      switch (option) {
-        case 'camera':
-          return this.three.camera;
-        case 'scene':
-          return this.three.scene;
-        case 'previous-pass':
-          return this.composer.readBuffer;
-        case 'previous-texture':
-          return this.composer.readBuffer.texture;
-        default:
-          return option;
-      }
-    });
-    const pass = new this.method(
-      ...optionsToPass
-    );
+    this.three.onAfterInit(async () => {
+      await this.$nextTick()
+      await this.$nextTick()
 
-    this.completePass(pass);
+      const optionsToPass = this.options.map(option => {
+        switch (option) {
+          case 'camera':
+            return this.three.camera;
+          case 'scene':
+            return this.three.scene;
+          case 'previous-pass':
+          case 'prev-pass':
+            return this.three.composer.readBuffer;
+          case 'previous-texture':
+          case 'prev-texture':
+            return this.three.composer.readBuffer.texture;
+          default:
+            return option;
+        }
+      });
+      const pass = new this.method(
+        ...optionsToPass
+      );
+
+      this.completePass(pass);
+    })
   },
   __hmrId: 'SSAOPass',
 });

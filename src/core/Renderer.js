@@ -48,7 +48,7 @@ export default defineComponent({
       this.renderer = this.three.renderer;
       this.renderer.shadowMap.enabled = this.shadow;
 
-      this._render = this.three.composer ? this.three.renderC : this.three.render;
+      this._render = this.three.render//this.three.composer ? this.three.renderC : this.three.render;
 
       if (this.xr) {
         this.renderer.xr.enabled = true;

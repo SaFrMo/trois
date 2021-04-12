@@ -3,8 +3,12 @@ import { EffectComposer } from 'three/examples/jsm/postprocessing/EffectComposer
 
 export default defineComponent({
   setup() {
+    const three = inject('three');
+    const composer = true;
+    three.composer = composer;
+
     return {
-      composer: null,
+      composer,
       passes: [],
     };
   },
@@ -16,9 +20,10 @@ export default defineComponent({
     };
   },
   mounted() {
-    this.three.onAfterInit(() => {
-      this.composer = new EffectComposer(this.three.renderer);
-      this.three.renderer.autoClear = false;
+    this.three.onAfterInit(async () => {
+      await this.$nextTick();
+      this.composer =
+        this.three.renderer.autoClear = false;
       this.passes.forEach(pass => {
         this.composer.addPass(pass);
       });
