@@ -60,6 +60,7 @@ export const TroisJSVuePlugin = {
       'GLTFModel',
 
       'BokehPass',
+      'CustomEffect',
       'CustomPass',
       'EffectComposer',
       'FilmPass',

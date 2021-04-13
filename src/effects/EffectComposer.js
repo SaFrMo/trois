@@ -21,9 +21,8 @@ export default defineComponent({
   },
   mounted() {
     this.three.onAfterInit(async () => {
-      await this.$nextTick();
-      this.composer =
-        this.three.renderer.autoClear = false;
+      this.composer = new EffectComposer(this.three.renderer);
+      this.three.renderer.autoClear = false;
       this.passes.forEach(pass => {
         this.composer.addPass(pass);
       });
@@ -38,7 +37,9 @@ export default defineComponent({
   },
   methods: {
     resize() {
-      this.composer.setSize(this.three.size.width, this.three.size.height);
+      const { width, height } = this.three.size;
+      this.passes.forEach(pass => pass.setSize(width, height))
+      this.composer.setSize(width, height);
     },
   },
   render() {

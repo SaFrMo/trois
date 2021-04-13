@@ -162,10 +162,10 @@ export default function useThree() {
   function render() {
     if (obj.orbitCtrl) obj.orbitCtrl.update();
     if (obj.composer && obj.composer.render) {
-      console.log('composer render')
+      // console.log('composer render')
       obj.composer.render();
     } else {
-      console.log('regular render')
+      // console.log('regular render')
       obj.renderer.render(obj.scene, obj.camera);
     }
   }

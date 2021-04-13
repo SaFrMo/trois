@@ -1,5 +1,6 @@
 import { defineComponent } from 'vue';
 import EffectPass from './EffectPass.js';
+import { EffectPass as PostprocessingEffectPass } from 'postprocessing';
 
 export default defineComponent({
   extends: EffectPass,
@@ -38,10 +39,11 @@ export default defineComponent({
             return option;
         }
       });
+      console.log(new this.method(...optionsToPass))
       // TODO: batch into single EffectPass - see https://vanruesc.github.io/postprocessing/public/demo/#performance
-      const pass = new this.method(
+      const pass = new PostprocessingEffectPass(this.three.camera, new this.method(
         ...optionsToPass
-      );
+      ));
 
       this.completePass(pass);
     })
